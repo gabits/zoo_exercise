@@ -1,68 +1,66 @@
->>> import zoo
+>>> from zoo import Zoo, Cage, Animal, Lion, Hyena, Wildebeest, Snake # ...
 
+# Create a Zoo
+>>> london_zoo = Zoo()
 
->>> lion_1 = Lion('Leo', 4) """" Name = 'Leo', age = 4 """ # Problems: needs to create object according to class and append to dictionary
->>> Wildebeest('Joseph', 7)
->>> Hyena.place_in_food_chain
-prey
->>> Hyena('Yara', 2)
->>> display_existing_animals() # Creates a dictionary for all Animal objects created by species subclasses
-{ 'Leo': {'species': Lion, 'age': 4, 'place in food chain': 'predator', 'alive': True, 'cage': None}, 
-                        # { animal.name: type_of(animal), 'age: ' + animal.age, Species.place_in_food_chain' }
-                            'Joseph': {'species': Wildebeest, 'age': 7, 'place in food chain': 'prey', 'alive': False, 'eaten_by': Leo}}
-                        # type_of(animal) is supposed to show the respective class of variable animal
+# Create different cages
+>>> cage_1 = Cage() # Empty cage
+>>> london_zoo.cages = [cage_1, cage_7, cage_2, cage_5] # Populate Zoo with cages
 
-
-
-
-# Zoo methods
->>> n_of_cages() # Prints number of cages (number of occurances in zoo dictionary)
->>> list_of_animals('Cage 1') # Argument given is taken as dictionary key for value containing cage list of animals 
-[Leo, Joseph, Yara]
->>> dead_animals('Cage 1') # Iterates through 'Cage 1' list and returns all objects whose .alive attribute is False.
-[Joseph, Yara]
-
-
-cage_1.append()
-
-
-# Attributes
->>> Leo.species # Prints class (type) of Leo
-Lion 
->>> Leo.age
+# Find out how many cages are in the zoo
+>>> len(london_zoo.cages)
 4
->>> Wildebeest.place_in_food_chain
-prey
->>> Leo.alive
-True
->>> Wildebeest.alive
-False
->>> Wildebeest.eaten_by # Keeps track of alive attribute True objects in the same cage *
-Leo
->>> Wildebeest.eaten_by.species
-Lion
 
+# Place different animals (of particular species) in cages
+>>> lion_1 = Lion()
+>>> snake_3 = Snake()
+>>> cage_1.animals = [lion_1, snake_3]
 
->>> Zoo['Cage 1'] = [ Leo, Joseph, Yara ]
+# Be able to name the animals 
+>>> lion_2 = Lion('Leo')
+>>> snake_1 = Snake('Flora')
+
+# 5. List animals inside a cage
+>>> cage_5.animals
+[wildebeest_1, lion_3, snake_4] # This is attribute of class Cage returns a list
+
+# Repopulating a cage
+>>> del cage_5.animals[2]
+>>> cage_5.animals
+[wildebeest_1, lion_3]
+>>> cage_5.add(rat_3, rat_5, hyena_2)
+>>> cage_5.animals
+[wildebeest_1, lion_3, rat_3, rat_5, hyena_2]
+
+# Make preys get eaten by predators if in same cage
+>>> cage_5.animals.add(snake_4)
+"""Oops! Seems like you put predator and prey in the same cage."""
+Cage currently: [lion_3, hyena_2, snake_4]
+Dead animals: [rat_3, rat_5]
+
+# List which predator ate which prey
+>>> cage_5.who_was_the_predator()
+rat_3: eaten by snake_4
+rat_5: eaten by snake_4
+>>> cage_2.who_was_the_predator()
+"""No animal has been eaten in this cage."""
+
 
 class Zoo(Cages):
     def __init__(self):
         self.cages = cages
 
-zoo = Zoo() # Creates empty Zoo
+>>> zoo = Zoo() # Creates empty Zoo
 
-cage_1 = [] # Creates empty Cage
-cage_2 = [lion_1, hyena_4, wildebeest_2]
+>>> for i in cage_1.animals[i]:
+>>>     print(cage_1.animals[i].name)
 
->>> lion_1 = Lion() 
->>> cage_1.append(lion_1)
->>> cage_2.append(lion_2)
 
 
 
 class Cage(object):
     def __init__(self):
-        self.list_of_animals = []        
+        self.animals = []        
 
 
 
