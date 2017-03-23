@@ -67,15 +67,8 @@ Some species of animals like eating other species of animals.  For example, lion
 ```
 >>> cage_5.animals.add(snake_4)
 Oops! Seems like you put predator and prey in the same cage.
-Animals in the cage: [lion_3, hyena_2, snake_4]
-Dead animals: [rat_3, rat_5]
-```
-
-### List which predator ate which prey
-```
->>> cage_5.who_was_the_predator()
 rat_3: eaten by snake_4
 rat_5: eaten by snake_4
->>> cage_2.who_was_the_predator()
-No animal has been eaten in this cage.
+Animals in the cage: [lion_3, hyena_2, snake_4]
+Dead animals: [rat_3, rat_5]
 ```
