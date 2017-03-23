@@ -26,7 +26,7 @@ You are a zoo keeper.  Write a command-line program in Python that simulates a s
 
 ### Create different cages
 ```
->>> cage_1 = Cage() # Empty cage
+>>> cage_1 = Cage() 
 >>> london_zoo.cages = [cage_1, cage_7, cage_2, cage_5] # Populate Zoo with cages
 ```
 
@@ -45,31 +45,35 @@ You are a zoo keeper.  Write a command-line program in Python that simulates a s
 
 ### Be able to name the animals 
 ```
->>> lion_2 = Lion('Leo')
->>> snake_1 = Snake('Flora')
+>>> lion_2.name = 'Leo'
+>>> snake_1.name = 'Flora'
 ```
 
 ### List animals inside a cage
 ```
->>> cage_5.animals
-[wildebeest_1, lion_3, snake_4] # This is attribute of class Cage returns a list
+>>> cage_5.animals_inside()
+# Does not return the Animal objects inside the cage, but a list of strings related to them as an ID attribute
+Animals inside this cage: ['Unnamed Coyote', 'Flora Snake', 'Unnamed Snake'] 
+>>> cage_6.animals_inside()
+This cage is empty.
 ```
 
 ### Repopulating a cage
 ```
 >>> del cage_5.animals[2]
->>> cage_5.animals
-[wildebeest_1, lion_3]
->>> cage_5.add(rat_3, rat_5, hyena_2)
->>> cage_5.animals
-[wildebeest_1, lion_3, rat_3, rat_5, hyena_2]
+>>> cage_5.animals_inside()
+Animals inside this cage: ['Unnamed Coyote', 'Flora Snake']
+>>> snake_3 = Snake()
+>>> snake_5 = Snake()
+>>> cage_5.add_animals(snake_3, snake_5)
+>>> cage_5.animals_inside()
+Animals in this cage: ['Unnamed Coyote', 'Flora Snake', 'Unnamed Snake', 'Unnamed Snake']
 ```
 
 ### Make preys get eaten by predators if in same cage
 ```
->>> cage_5.animals.add(snake_4)
+>>> cage_5.add_animals(coyote_3, lion_1)
 Oops! Seems like you put predator and prey in the same cage.
-Flora Snake was eaten by Unnamed Racoon
-Animals in the cage: ['Yves Falcon', 'Unnamed Racoon']
-Dead animals: ['Flora Snake']
+Yves Coyote was eaten by Leo Lion.
+Animals in this cage: ['Unnamed Falcon', 'Leo Lion']
 ```
