@@ -37,10 +37,12 @@ You are a zoo keeper.  Write a command-line program in Python that simulates a s
 ```
 
 ### Place different animals (of particular species) in cages
-```>>> lion_1 = Lion()
+```
 >>> snake_3 = Snake()
->>> cage_1.animals = [lion_1, snake_3]
->>> cage_2 = Cage(wildebeest_1, wildebeest_5)
+>>> snake_5 = Snake()
+>>> cage_5.add_animals(snake_3, snake_5)
+>>> cage_5.animals_inside()
+Animals in this cage: ['Unnamed Coyote', 'Flora Snake', 'Unnamed Snake', 'Unnamed Snake']
 ```
 
 ### Be able to name the animals 
@@ -63,11 +65,8 @@ This cage is empty.
 >>> del cage_5.animals[2]
 >>> cage_5.animals_inside()
 Animals inside this cage: ['Unnamed Coyote', 'Flora Snake']
->>> snake_3 = Snake()
->>> snake_5 = Snake()
->>> cage_5.add_animals(snake_3, snake_5)
->>> cage_5.animals_inside()
-Animals in this cage: ['Unnamed Coyote', 'Flora Snake', 'Unnamed Snake', 'Unnamed Snake']
+>>> cage_5.add_animals(racoon_3)
+
 ```
 
 ### Make preys get eaten by predators if in same cage
