@@ -5,10 +5,12 @@ As an exercise to train the logic of Python classes and how objects behave with 
 ## Zoo Game
 
 You are a zoo keeper.  Write a command-line program in Python that simulates a simple zoo, using object oriented programming.  You should be able to do the following: 
-Create different cages in the zoo.  At any time, you should be able to find out how many cages are in the zoo.
-Put different animals in the cages. Each animal should be of a particular species (e.g. 'Lion'), and have a name given to them by the zookeeper (e.g. 'Growler').
-Find out which animals are in a particular cage.
-Some species of animals like eating other species of animals.  For example, lions like eating wildebeest.  If you put prey and predator in the same cage, then all the prey should be eaten by the predator.  (The program should tell you which predator ate which prey by printing to the console.)
+
+* Create different cages in the zoo.  At any time, you should be able to find out how many cages are in the zoo.
+* Put different animals in the cages. 
+* Each animal should be of a particular species (e.g. 'Lion'), and have a name given to them by the zookeeper (e.g. 'Growler').
+* Find out which animals are in a particular cage.
+* Some species of animals like eating other species of animals.  For example, lions like eating wildebeest.  If you put prey and predator in the same cage, then all the prey should be eaten by the predator.  (The program should tell you which predator ate which prey by printing to the console.)
 
 
 
@@ -47,7 +49,7 @@ Some species of animals like eating other species of animals.  For example, lion
 >>> snake_1 = Snake('Flora')
 ```
 
-### 5. List animals inside a cage
+### List animals inside a cage
 ```
 >>> cage_5.animals
 [wildebeest_1, lion_3, snake_4] # This is attribute of class Cage returns a list
@@ -67,8 +69,7 @@ Some species of animals like eating other species of animals.  For example, lion
 ```
 >>> cage_5.animals.add(snake_4)
 Oops! Seems like you put predator and prey in the same cage.
-rat_3: eaten by snake_4
-rat_5: eaten by snake_4
-Animals in the cage: [lion_3, hyena_2, snake_4]
-Dead animals: [rat_3, rat_5]
+Flora Snake was eaten by Unnamed Racoon
+Animals in the cage: ['Yves Falcon', 'Unnamed Racoon']
+Dead animals: ['Flora Snake']
 ```
