@@ -30,7 +30,7 @@ Some species of animals like eating other species of animals.  For example, lion
 
 ### Find out how many cages are in the zoo
 ```
->>> len(london_zoo.cages)
+>>> london_zoo.n_of_cages
 4
 ```
 
