@@ -38,6 +38,7 @@ Some species of animals like eating other species of animals.  For example, lion
 ```>>> lion_1 = Lion()
 >>> snake_3 = Snake()
 >>> cage_1.animals = [lion_1, snake_3]
+>>> cage_2 = Cage(wildebeest_1, wildebeest_5)
 ```
 
 ### Be able to name the animals 
