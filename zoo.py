@@ -1,43 +1,67 @@
-class Animal(object):
+class Animal:
+    """ Creates Animal object with a name and a list of preys. """
+
     def __init__(self):
         self.name = 'Unnamed'
         self.preys = []
-        self.id = str(self.name) + " " + type(self).__name__
+        self.identification = str(self.name) + " " + type(self).__name__
 
     
 class Snake(Animal):
+    """ Creates Lion object inheriting attributes and methods from Animal class. """
+
     def __init__(self):
-        super(Snake, self).__init__()
+        super().__init__()
         self.preys = []
 
         
 class Falcon(Animal):
+    """ Creates Falcon object inheriting attributes and methods from Animal class. """
+
     def __init__(self):
-        super(Falcon, self).__init__()
+        super().__init__()
         self.preys = [Snake]
 
     
 class Racoon(Animal):
+    """ Creates Racoon object inheriting attributes and methods from Animal class. """
+
     def __init__(self):
-        super(Racoon, self).__init__()
-        self.preys = [Snake]
+        super().__init__()
+        self.preys = [Snake] # Defines
 
 
 class Coyote(Animal):
+    """ Creates Coyote object inheriting attributes and methods from Animal class. """
+
     def __init__(self):
-        super(Coyote, self).__init__()
+        super().__init__()
         self.preys = [Racoon]
 
 
 class Lion(Animal):
+    """ Creates Lion object inheriting attributes and methods from Animal class. """
+
     def __init__(self):
-        super(Lion, self).__init__()
+        super().__init__()
         self.preys = [Coyote]
         
         
-class Cage(Animal):
+class Cage(Zoo):
+    """ Creates a Cage object, inheriting from Zoo class, with a list of animals inside. """
+
     def __init__(self):
+        super().__init__()
+        """Starts an object of Cage class with an empty list of animals"""
         self.animals = []
+        ### self.zoo
+        self.n_of_animals = len(self.animals) # Count of all alive animals inside the cage
+
+    def __repr__(self):
+        """Human friendly-readable format of Cage class representation"""
+        if zoo for cage in zoo:
+        return 'Cage{} contains {} animals: {}'.format(self.name, self.n_of_animals, self.animals)
+
     def animals_inside(self):
         names_list = []
         if len(self.animals) > 0:
@@ -46,8 +70,9 @@ class Cage(Animal):
                 print("Animals in this cage: {}".format(names_list))
         else:
             print('This cage is empty')
-    def add_animals(self, *args):
-        for animal in args:
+
+    def add_animals(self, add_list):
+        for animal in add_list:
             self.animals.append(animal) # Inserts Animal object in cage   
         for predator in self.animals:
             count = 0
@@ -60,13 +85,16 @@ class Cage(Animal):
         self.animals_inside()
 
 
-class Zoo(Cage):
+class Zoo:
+    """Creates Zoo object that can contain a list of Cage objects. """
+
     def __init__(self):
-        super(Cage, self).__init__()
         self.cages = []
+
     def add_cage(self, *args):
         for cage in args:
             self.cages.append(cage)
+
     def n_of_cages(self):
         number = len(self.cages)
         return number
