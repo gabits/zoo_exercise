@@ -58,13 +58,13 @@ class Cage:
     def __init__(self):
         """ Starts an object of Cage class with an empty list of animals. """
         self.animals_list = []
-        self.n_of_animals = len(self.animals_list) # Count of all alive animals inside the cage
         self.name = 'Cage' # Default name configuration
         
     def __repr__(self):
         """ Human friendly-readable format of Cage class representation. """
-        if len(self.animals_list) > 0:
-            return "{} contains {} animals: {}".format(self.name, self.n_of_animals, self.animals)
+        self.n_of_animals = len(self.animals_list) # Count of all alive animals inside the cage
+        if len(self.animals_list) > 0: # Checks if cage isn't empty
+            return "{} contains {} animals: {}".format(self.name, self.n_of_animals, self.animals_list)
         else:
             return "{} (empty)".format(self.name)
 
@@ -74,7 +74,7 @@ class Cage:
         Iterates through its animals list and kills (deletes) the predator's
         preys. """       
         # Iteration through each animal in the list to check if it has listed preys inside the cage:
-        for predator in self.animals_list: # 
+        for predator in self.animals_list:
             prey_index = 0
             for prey in self.animals_list: # Iterates trough the animal's preys Class list
                 """ Compares the listed classes in an animal's preys list 
@@ -86,33 +86,42 @@ class Cage:
                 prey_index += 1 # Increases index number for iterator  
 
         print(self) # Prints updated list of animals inside the cage
+
     def add_animals(self, add_list):
         """ Method that allows you to insert animals inside the Cage object. """
         for animal in add_list:
             self.animals_list.append(animal) # Inserts Animal object in cage   
-        check_preys(self.animals_list) 
+        return self.check_preys()
         # Will perform a check on whether there is prey and predator on the same cage
     
         
 class Zoo(Cage):
     """ Creates Zoo object that can contain a list of Cage objects. """
-
     
     def __init__(self):
         super().__init__()
         self.name = 'Zoo' # Default name  
         self.cages = []
-        self.n_of_cages = len(self.cages)
 
     def __repr__(self):
-        self.n_of_animals = sum(item.n_of_animals for item in self.cages)
         """ Human friendly-readable format of Zoo class representation. """
+        self.n_of_cages = len(self.cages) # Calculates the number of cages inside the zoo
         if self.n_of_cages > 0:
-            return '{} contains {} cages and a total of {} animals'.format(self.name, self.n_of_cages, self.n_of_animals)
+            return '{} contains {} cages and a total of {} animals'.format(
+                self.name, self.n_of_cages, self.animals_count())
         else:
             return '{} (empty)'.format(self.name)
     
-    def add_cage(self, list_to_add):
-        for cage in list_to_add:
+    def add_cage(self, list_to_add): # Adds each Cage instances inside a given list as argument
+        for cage in list_to_add: 
             self.cages.append(cage)
         return self
+
+    def animals_count(self):
+        """ 
+        Acessing attributes from instances of class Cage, it calculates how many
+        animals are in total inside all cages of the zoo. """
+        self.n_of_animals = 0
+        for item in self.cages: 
+            self.n_of_animals += item.n_of_animals
+        return self.n_of_animals
