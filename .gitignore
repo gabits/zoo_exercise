@@ -1,3 +1,6 @@
-.project
-.pydevproject
-.pyc
+*.project
+*.pydevproject
+*.pyc
+__pycache__
+*.git
+*.DS_Store
