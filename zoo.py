@@ -1,118 +1,114 @@
 class Animal:
-    """ Creates Animal object with a name and a list of preys. """
+    """ Can be placed inside cages, and according to its place in food chain
+    it has a list attribute of its prey (what it likes to eat). 
+    """
 
     def __init__(self):
         self.name = 'Unnamed' # Default naming, to be modified
-        self.preys = []
+        self.prey = []
     
     def __repr__(self):
-        """ Representation of animal object identifying its name and species (subclass). """
+        """ Identifies the Animal by its name and species (subclass). 
+        """
         return str(self.name) + " " + type(self).__name__
             
     
 class Goat(Animal):
-    """ Creates Goat object inheriting attributes and methods from Animal class. """
 
     def __init__(self):
         super().__init__()
-        self.preys = [] # List of Animal subclasses that Goats eat
 
         
 class Jackal(Animal):
-    """ Creates Jackal object inheriting attributes and methods from Animal class. """
+
+    self.prey = [Goat, Rabbit] # List of Animal subclasses that Jackals eat
 
     def __init__(self):
         super().__init__()
-        self.preys = [Goat, Rabbit] # List of Animal subclasses that Jackals eat
     
     
 class Rabbit(Animal):
-    """ Creates Rabbit object inheriting attributes and methods from Animal class. """
 
+    self.prey = [Mouse] # List of Animal subclasses that Rabbits eat
+    
     def __init__(self):
         super().__init__()
-        self.preys = [Mouse] # List of Animal subclasses that Rabbits eat
 
 
 class Owl(Animal):
-    """ Creates Owl object inheriting attributes and methods from Animal class. """
 
+    self.prey = [Mouse] # List of Animal subclasses that Owls eat 
+    
     def __init__(self):
         super().__init__()
-        self.preys = [Mouse] # List of Animal subclasses that Owls eat 
 
 
 class Mouse(Animal):
-    """ Creates Mouse object inheriting attributes and methods from Animal class. """
 
     def __init__(self):
         super().__init__()
-        self.preys = [] # List of Animal subclasses that Mouses eat
 
 
 class Snake(Animal):
-    """ Creates Snake object inheriting attributes and methods from Animal class. """
 
+    self.prey = [Mouse] # List of Animal subclasses that Snakes eat
+    
     def __init__(self):
         super().__init__()
-        self.preys = [Mouse] # List of Animal subclasses that Snakes eat
-     
+    
      
 class Kite(Animal):
-    """ Creates Kite object inheriting attributes and methods from Animal class. """
 
+    self.prey = [Snake] # List of Animal subclasses that Kites eat
+    
     def __init__(self):
         super().__init__()
-        self.preys = [Snake] # List of Animal subclasses that Kites eat
              
         
 class WildCat(Animal):
-    """ Creates WildCat object inheriting attributes and methods from Animal class. """
+    
+    self.prey = [Rabbit, Mouse] # List of Animal subclasses that WildCats eat
 
     def __init__(self):
         super().__init__()
-        self.preys = [Rabbit, Mouse] # List of Animal subclasses that WildCats eat
      
              
 class Lion(Animal):
-    """ Creates Lion object inheriting attributes and methods from Animal class. """
 
+    self.prey = [Goat, Jackal, WildCat, Kite] # List of Animal subclasses that Lions eat
+    
     def __init__(self):
         super().__init__()
-        self.preys = [Goat, Jackal, WildCat, Kite] # List of Animal subclasses that Lions eat
-             
-        
+              
         
 class Cage:
-    """ 
-    Creates a Cage object, inheriting from Zoo class, 
-    with a list of animals inside. """
+    """ Contains a list of animals inside and performs methods to check the 
+    intern competition where there might be a conflict of prey and predator.  
+    """
 
     def __init__(self):
-        """ Starts an object of Cage class with an empty list of animals. """
         self.animals_list = []
         self.name = 'Cage' # Default name configuration
         
     def __repr__(self):
-        """ Human friendly-readable format of Cage class representation. """
         if len(self.animals_list) > 0: # Checks if cage isn't empty
             return "{} contains {} animals: {}".format(self.name, len(self.animals_list), self.animals_list)
         else:
             return "{} (empty)".format(self.name)
 
-    def check_preys(self):
-        """ 
-        Method for checking the animals chain food competition inside a cage:
-        Iterates through its animals list and kills (deletes) the predator's
-        preys. """       
+    def check_prey(self):
+        """ Method for checking the animals chain food competition inside a 
+        cage: iterates through its animals list and kills (deletes) the 
+        predator's prey. 
+        """       
         death_statements = []
-        # Iteration through each animal in the list to check if it has listed preys inside the cage:
+        # Iteration through each animal in the list to check if it has listed prey inside the cage:
         for predator in self.animals_list:
             prey_index = 0
-            for prey in self.animals_list: # Iterates trough the animal's preys Class list
-                """ Compares the listed classes in an animal's preys list 
+            for prey in self.animals_list: # Iterates trough the animal's prey Class list
+                """ Compares the listed classes in an animal's prey list 
                 with the class of each other animal on the cage. """
-                if type(prey) in predator.preys:                     
+                if type(prey) in predator.prey:                     
                     del self.animals_list[prey_index] # Kills the prey: deletion by its index 
                     death_statements.append("{} got eaten by {}.".format(prey, predator))                
                 prey_index += 1 # Increases index number for iterator  
@@ -123,7 +119,8 @@ class Cage:
         print('Now ' + str(self)) # Prints updated list of animals inside the cage
 
     def add_animals(self, add_list):
-        """ Method that allows you to insert animals inside the Cage object. """
+        """ Inserts animals inside the Cage object. 
+        """
         duplicate_animals = []
         for animal in add_list:
             if animal not in self.animals_list:
@@ -140,14 +137,14 @@ class Cage:
             print("You can't put the same animal in a cage more than once: {} already inside.".format(
                 duplicates))
             print(self)
-        return self.check_preys()
+        return self.check_prey()
         # Will perform a check on whether there is prey and predator on the same cage
     
         
-class Zoo(Cage):
-    """ 
-    Creates Zoo object that can contain a list of Cage objects. 
-    Inherits from Cage to access the Animal objects in each. """
+class Zoo:
+    """ Contains a list of Cage objects and informs about the animals inside
+    itself.
+    """
     
     def __init__(self):
         super().__init__()
@@ -155,7 +152,8 @@ class Zoo(Cage):
         self.cages = []
 
     def __repr__(self):
-        """ Human friendly-readable format of Zoo class representation. """
+        """ Human friendly-readable format of Zoo class representation. 
+        """
         self.n_of_cages = len(self.cages) # Calculates the number of cages inside the zoo
         if self.n_of_cages > 0:
             return '{} contains {} cages and a total of {} animals'.format(
@@ -169,9 +167,9 @@ class Zoo(Cage):
         return self
 
     def animals_count(self):
-        """ 
-        Acessing attributes from instances of class Cage, it calculates how many
-        animals are in total inside all cages of the zoo. """
+        """ Accessing attributes from instances of class Cage, it calculates 
+        how many animals are in total inside all cages of the zoo. 
+        """
         self.n_of_animals = 0
         for item in self.cages: 
             # Appends to attribute sum of animals inside each cage
