@@ -105,8 +105,8 @@ class Cage:
         Method for checking the animals chain food competition inside a cage:
         Iterates through its animals list and kills (deletes) the predator's
         preys. """       
-        # Iteration through each animal in the list to check if it has listed preys inside the cage:
         death_statements = []
+        # Iteration through each animal in the list to check if it has listed preys inside the cage:
         for predator in self.animals_list:
             prey_index = 0
             for prey in self.animals_list: # Iterates trough the animal's preys Class list
@@ -163,7 +163,7 @@ class Zoo(Cage):
         else:
             return '{} (empty)'.format(self.name)
     
-    def add_cage(self, list_to_add): # Adds each Cage instances inside a given list as argument
+    def add_cages(self, list_to_add): # Adds each Cage instances inside a given list as argument
         for cage in list_to_add: 
             self.cages.append(cage)
         return self
