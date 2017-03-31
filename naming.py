@@ -1,4 +1,5 @@
-from zoo import Zoo, Cage, Animal, Mouse, WildCat, Lion, Owl, Goat, Jackal, Rabbit, Kite
+from zoo import (Zoo, Cage, Animal, Mouse, WildCat, Lion, Owl, Goat, Jackal, 
+                 Rabbit, Kite)
 
 class AutoId(Animals, Cages, Zoo):
     
