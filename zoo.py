@@ -4,7 +4,6 @@ class Animal:
     """
 
     prey = []
-    is_animal = True
 
     def __init__(self):
         self.name = 'Unnamed'       # Default naming, to be modified
@@ -111,7 +110,7 @@ class Cage:
         # Check if any animals in the list have listed prey inside this cage:
         for predator in self.animals_list:
             prey_index = 0
-            for prey in self.animals_list:      # Parses animal's prey list
+            for prey in range(self.animals_list[]):      # Parses animal's prey list
                 """ Compares the listed classes in an animal's prey list
                 with the class of each other animal on the cage. """
                 if type(prey) in predator.prey:
@@ -119,6 +118,7 @@ class Cage:
                     death_statements.append("{} got eaten by {}.".format(
                         prey, predator))
                 prey_index += 1     # Increases index number for iterator
+        self.animals_list.remove(prey) for animal in self._animals_list
         if len(death_statements) > 0:
             print("Oops! Seems like you put predator and prey on same cage.")
             for statement in death_statements:
@@ -126,8 +126,7 @@ class Cage:
         print('Now ' + str(self))       # Shows updated list of animals in cage
 
     def add_animals(self, add_list):
-        """ Inserts animals inside the Cage object.
-        """
+        """ Inserts animals inside the Cage object. """
         duplicate_animals = []
         for animal in add_list:
             if animal.__class__.__base__ != Animal:
