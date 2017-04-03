@@ -11,7 +11,8 @@ class Animal:
     def __repr__(self):
         """ Identifies the Animal by its name and species (subclass).
         """
-        return str(self.name) + " " + type(self).__name__
+        species = self.__class__.__name__
+        return self.name + " " + species if self.name != 'Unnamed' else species
 
 
 class Mouse(Animal):
@@ -95,10 +96,14 @@ class Cage:
 
     def __repr__(self):
         if len(self.animals_list) > 0:      # Checks if cage isn't empty
-            return "{} contains {} animal(s): {}".format(self.name, len(
-                self.animals_list), ', '.join(map(str, self.animals_list)))
+            return "{} contains {} animal(s): {}".format(
+                self.name, self.n_of_animals(),
+                ', '.join(map(str, self.animals_list)))
         else:
             return "{} (empty)".format(self.name)
+
+    def n_of_animals(self):
+        return len(self.animals_list)
 
     def check_prey(self):
         """ Method for checking the animals chain food competition inside a
@@ -130,14 +135,14 @@ class Cage:
             object (in this case, the item won't be inserted in the Cage)
             """
             if animal.__class__.__base__ != Animal:
-                print("{} could not be added because it's not an Animal object"
-                      .format(animal.__class__.__name__))
+                print("{} object could not be added because it's not an "
+                      "Animal subclass.".format(animal.__class__.__name__))
             elif animal not in self.animals_list:
                 self.animals_list.append(animal)
                 # Inserts Animal object in cage if not already inside
             elif animal not in duplicate_animals:
                     duplicate_animals.append(animal)
-        if len(duplicate_animals) > 0:      # Checks duplicate insert attempt 
+        if len(duplicate_animals) > 0:      # Checks duplicate insert attempt
             print("Duplicate animal(s) found: {} already inside.".format(
                 ', '.join(map(str, duplicate_animals))))
             print(self)
@@ -158,7 +163,7 @@ class Zoo:
     def __repr__(self):
         if len(self.cages) > 0:
             return '{} contains {} cage(s) and a total of {} animal(s)'.format(
-                self.name, len(self.cages), self.animals_count())
+                self.name, len(self.cages), self.n_of_animals())
         else:
             return '{} (empty)'.format(self.name)
 
@@ -167,13 +172,14 @@ class Zoo:
             if type(cage) == Cage:
                 self.cages.append(cage)
             else:
-                print("{} is not a Cage object.".format(cage))
+                print("{} object could not be added because it's not a Cage."
+                      .format(cage.__class__.__name__))
         return self
 
     def n_of_cages(self):       # User method to find out number of cages
         return len(self.cages)
 
-    def animals_count(self):
+    def n_of_animals(self):
         """ Accessing attributes from instances of class Cage, it calculates
         how many animals are in total inside all cages of the zoo.
         """
