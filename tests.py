@@ -23,7 +23,7 @@ class UserStory(TestCase):
         """ Tests zoo with empty cages """
         zoo.add_cages([cage_1, cage_2])
         self.assertEqual(zoo.cages, [cage_1, cage_2])
-        
+
         """ Multiple addition of animals among repeated ones """
         cage_1.add_animals([mouse, mouse, lion, lion, mouse])
         # Set up to test more than one duplicated animal and different orders
@@ -42,10 +42,11 @@ class UserStory(TestCase):
         # ----- Should I do it?
 
         """ Attempt to add objects that are not animals to a cage """
-        cage_4.add_animals([2])
-        self.assertFalse(cage_4.animals_list, [2])
-        cage_4.add_animals([zoo])
-        self.assertFalse(cage_4.animals_list, [zoo])
+        cage_1.animals_list = []
+        cage_1.add_animals([2])
+        self.assertFalse(cage_1.animals_list, [2])
+        cage_1.add_animals([zoo])
+        self.assertFalse(cage_1.animals_list, [zoo])
 
 #         self.assertTrue()
 
