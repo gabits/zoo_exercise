@@ -1,5 +1,6 @@
-from zoo import (Zoo, Cage, Animal, Mouse, WildCat, Lion)
+from zoo import (Zoo, Cage, Mouse, WildCat, Lion)
 from unittest import TestCase, main
+
 
 class UserStory(TestCase):
 
@@ -12,7 +13,7 @@ class UserStory(TestCase):
         """ Creation of animals: """
         mouse = Mouse()
         wildcat = WildCat()
-        lion = Lion()      
+        lion = Lion()
 
         """ Attempt to add objects that are not cages to a zoo """
         zoo.add_cages(['Cage 1'])
@@ -49,6 +50,7 @@ class UserStory(TestCase):
         self.assertFalse(cage_1.animals_list, [zoo])
 
 #         self.assertTrue()
+
 
 """ Only if file is primarily called on Python (executed by its name)
 the main() function will be called and tests will be initiated.
